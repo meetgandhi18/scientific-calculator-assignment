@@ -1,1 +1,1 @@
-# scientific-calculator-assignment
+# Scientific Calculator
