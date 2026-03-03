@@ -7,26 +7,29 @@ class Calculator {
   appendValue(displayValue, internalValue) {
 
     // prevent two operators in a row
-    const operators = ["+" , "-" , "*" , "/" , "%" , "**"];
+    const operators = ["+", "-", "*", "/", "%", "**"];
     const lastChar = this.internalExpression.slice(-1);
 
-    if(operators.includes(internalValue) && operators.includes(lastChar)){
-        return;
+    if (operators.includes(internalValue) && operators.includes(lastChar)) {
+      return;
     }
 
     // prevent multiple decimals in same number
-    if(internalValue === "."){
-        const parts = this.internalExpression.split(/[\+\-\*\/%\(\)]/);
-        const lastNumber = parts[parts.length -1];
+    if (internalValue === ".") {
+      const parts = this.internalExpression.split(/[\+\-\*\/%\(\)]/);
+      const lastNumber = parts[parts.length - 1];
 
-        if(lastNumber.includes(".")){
-            return;
-        }
-    }
-    
-    // prevent Starting With Operator
-    if(this.internalExpression === "" && ["+","*","/","%","**"].includes(internalValue)){
+      if (lastNumber.includes(".")) {
         return;
+      }
+    }
+
+    // prevent Starting With Operator
+    if (
+      this.internalExpression === "" &&
+      ["+", "*", "/", "%", "**"].includes(internalValue)
+    ) {
+      return;
     }
 
     this.displayExpression += displayValue;
@@ -43,6 +46,25 @@ class Calculator {
     this.internalExpression = this.internalExpression.slice(0, -1);
     this.updateDisplay(this.displayExpression || "0");
   }
+  toggleSign(){
+    try{
+        const value = eval(this.internalExpression);
+
+        if (!isFinite(value)) {
+            throw new Error("Invalid Calculation");
+        }
+
+        const result = -value;
+        this.displayExpression = result.toString();
+        this.internalExpression = result.toString();
+        this.updateDisplay(result);
+    }catch(error){
+        this.updateDisplay("Error");
+        this.displayExpression = "";
+        this.internalExpression = "";   
+    }
+  }
+
   calculate() {
     try {
       const result = eval(this.internalExpression);
@@ -101,11 +123,12 @@ function handleAction(action) {
       calculator.calculate();
       break;
 
-    case "togglesign":
-      toggleSign();
+    case "toggleSign":
+      calculator.toggleSign();
       break;
 
     default:
       console.log("Actions Not Implemented Yet: ", action);
   }
 }
+error
