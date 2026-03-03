@@ -62,10 +62,10 @@ class Calculator {
     this.updateDisplay(result);
   }
 
-  handleError(){
+  handleError() {
     this.displayExpression = "";
     this.internalExpression = "";
-    this.updateDisplay = ("Error");
+    this.updateDisplay = "Error";
   }
 
   toggleSign() {
