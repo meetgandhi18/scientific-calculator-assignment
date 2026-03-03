@@ -173,15 +173,21 @@ export class Calculator {
   }
 
   sec() {
-    this.applyUnaryOperation((value) => 1 /  Math.cos(this.converToRadians(value)));
+    this.applyUnaryOperation(
+      (value) => 1 / Math.cos(this.converToRadians(value)),
+    );
   }
 
   csc() {
-    this.applyUnaryOperation((value) =>1 /  Math.sin(this.converToRadians(value)));
+    this.applyUnaryOperation(
+      (value) => 1 / Math.sin(this.converToRadians(value)),
+    );
   }
 
   cot() {
-    this.applyUnaryOperation((value) =>1 /  Math.tan(this.converToRadians(value)));
+    this.applyUnaryOperation(
+      (value) => 1 / Math.tan(this.converToRadians(value)),
+    );
   }
 
   calculate() {

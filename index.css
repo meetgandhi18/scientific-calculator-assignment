@@ -39,3 +39,7 @@ body {
 .trig-section {
   display: none;
 }
+
+#degToggle{
+  cursor: pointer;
+}
