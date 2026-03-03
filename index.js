@@ -65,7 +65,7 @@ class Calculator {
   handleError() {
     this.displayExpression = "";
     this.internalExpression = "";
-    this.updateDisplay = "Error";
+    this.updateDisplay("Error");
   }
 
   toggleSign() {
@@ -85,6 +85,10 @@ class Calculator {
     } catch (error) {
       this.handleError();
     }
+  }
+
+  updateDisplay(value = this.displayExpression) {
+    this.display.value = value;
   }
 }
 
@@ -131,4 +135,3 @@ function handleAction(action) {
       console.log("Actions Not Implemented Yet: ", action);
   }
 }
-error;
