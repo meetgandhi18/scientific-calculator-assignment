@@ -27,7 +27,7 @@
 
         <!-- DEG / F-E -->
         <div class="d-flex gap-4 mb-2 px-1 mode-row text-muted">
-            <span>DEG</span>
+            <span id="degToggle" style="cursor:pointer;">DEG</span>
             <span>F-E</span>
         </div>
 
@@ -51,12 +51,12 @@
 
         <!-- Trigonometry Buttons -->
         <div class="row g-2 mb-3 trig-section" id="trigSection">
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">sin</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">cos</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">tan</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">sec</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">csc</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">cot</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="sin">sin</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="cos">cos</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="tan">tan</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="sec">sec</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="csc">csc</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="cot">cot</button></div>
         </div>
 
         <div class="row  row g-2 mb-3 function-section" id="functionSection">

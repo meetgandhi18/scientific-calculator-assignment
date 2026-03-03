@@ -3,6 +3,7 @@ import { fact } from "./helper.js";
 export class Calculator {
   constructor(displayElement) {
     this.display = displayElement;
+    this.angleMode = "DEG"; //default
     this.displayExpression = "";
     this.internalExpression = "";
   }
@@ -124,7 +125,7 @@ export class Calculator {
   ln() {
     this.applyUnaryOperation((value) => {
       if (value <= 0) throw new Error();
-      return Math.log2(value);
+      return Math.log(value);
     });
   }
 
@@ -146,6 +147,41 @@ export class Calculator {
 
   cube() {
     this.applyUnaryOperation((value) => value ** 3);
+  }
+
+  setAngleMode(mode) {
+    this.angleMode = mode;
+  }
+
+  converToRadians(value) {
+    if (this.angleMode === "DEG") {
+      return value * (Math.PI / 180);
+    }
+    return value; //already radians
+  }
+
+  sin() {
+    this.applyUnaryOperation((value) => Math.sin(this.converToRadians(value)));
+  }
+
+  cos() {
+    this.applyUnaryOperation((value) => Math.cos(this.converToRadians(value)));
+  }
+
+  tan() {
+    this.applyUnaryOperation((value) => Math.tan(this.converToRadians(value)));
+  }
+
+  sec() {
+    this.applyUnaryOperation((value) => 1 /  Math.cos(this.converToRadians(value)));
+  }
+
+  csc() {
+    this.applyUnaryOperation((value) =>1 /  Math.sin(this.converToRadians(value)));
+  }
+
+  cot() {
+    this.applyUnaryOperation((value) =>1 /  Math.tan(this.converToRadians(value)));
   }
 
   calculate() {
