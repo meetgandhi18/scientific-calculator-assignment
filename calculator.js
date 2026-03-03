@@ -132,6 +132,22 @@ export class Calculator {
     this.applyUnaryOperation((value) => fact(value));
   }
 
+  floor() {
+    this.applyUnaryOperation((value) => Math.floor(value));
+  }
+
+  ceil() {
+    this.applyUnaryOperation((value) => Math.ceil(value));
+  }
+
+  round() {
+    this.applyUnaryOperation((value) => Math.round(value));
+  }
+
+  cube() {
+    this.applyUnaryOperation((value) => value ** 3);
+  }
+
   calculate() {
     try {
       const result = this.evaluateExpression();

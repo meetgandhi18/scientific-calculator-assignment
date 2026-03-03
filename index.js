@@ -71,6 +71,22 @@ function handleAction(action) {
         calculator.factorial();
         break;
 
+    case "floor":
+        calculator.floor();
+        break;
+
+    case "ceil":
+        calculator.ceil();
+        break;
+
+    case "round":
+        calculator.round();
+        break;
+
+    case "cube":
+        calculator.cube();
+        break;
+
     default:
       console.log("Actions Not Implemented Yet: ", action);
   }
