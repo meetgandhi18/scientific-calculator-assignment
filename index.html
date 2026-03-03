@@ -27,7 +27,7 @@
 
         <!-- DEG / F-E -->
         <div class="d-flex gap-4 mb-2 px-1 mode-row text-muted">
-            <span>DEG</span>
+            <span id="degToggle">DEG</span>
             <span>F-E</span>
         </div>
 
@@ -51,20 +51,19 @@
 
         <!-- Trigonometry Buttons -->
         <div class="row g-2 mb-3 trig-section" id="trigSection">
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">sin</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">cos</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">tan</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">sec</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">csc</button></div>
-            <div class="col-4"><button class="btn btn-light btn-calc w-100">cot</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="sin">sin</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="cos">cos</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="tan">tan</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="sec">sec</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="csc">csc</button></div>
+            <div class="col-4"><button class="btn btn-light btn-calc w-100" data-action="cot">cot</button></div>
         </div>
 
-        <div class="row  row-cols-5 g-2 mb-3 function-section" id="functionSection">
-            <div class="col"><button class="btn btn-light btn-calc w-100">floor</button></div>
-            <div class="col"><button class="btn btn-light btn-calc w-100">ceil</button></div>
-            <div class="col"><button class="btn btn-light btn-calc w-100">round</button></div>
-            <div class="col"><button class="btn btn-light btn-calc w-100">x<sup>3</sup></button></div>
-            <div class="col"><button class="btn btn-light btn-calc w-100"><sup>y</sup>&radic;x</button></div>
+        <div class="row  row g-2 mb-3 function-section" id="functionSection">
+            <div class="col-3"><button class="btn btn-light btn-calc w-100" data-action="floor">floor</button></div>
+            <div class="col-3"><button class="btn btn-light btn-calc w-100" data-action="ceil">ceil</button></div>
+            <div class="col-3"><button class="btn btn-light btn-calc w-100" data-action="round">round</button></div>
+            <div class="col-3"><button class="btn btn-light btn-calc w-100" data-action="cube">x<sup>3</sup></button></div>
         </div>
 
 
@@ -87,7 +86,7 @@
             <div class="col"><button class="btn btn-light btn-calc w-100" data-action="absolute">|x|</button></div>
 
             <!--  Math Expression Written 2 exp 3 = 2*10**3-->
-            <div class="col"><button class="btn btn-light btn-calc w-100" data-value="*10**">exp</button></div>
+            <div class="col"><button class="btn btn-light btn-calc w-100" data-value="*10**" data-action="exp">exp</button></div>
             <div class="col"><button class="btn btn-light btn-calc w-100" data-value="%">mod</button></div>
 
             <!-- Row 3 -->

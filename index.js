@@ -21,6 +21,18 @@ buttons.forEach((button) => {
   });
 });
 
+const degToggle = document.getElementById("degToggle");
+
+degToggle.addEventListener("click", () => {
+  if (calculator.angleMode === "DEG") {
+    calculator.setAngleMode("RAD");
+    degToggle.innerText = "RAD";
+  } else {
+    calculator.setAngleMode("DEG");
+    degToggle.innerText = "DEG";
+  }
+});
+
 function handleAction(action) {
   switch (action) {
     case "clear":
@@ -68,8 +80,48 @@ function handleAction(action) {
       break;
 
     case "factorial":
-        calculator.factorial();
-        break;
+      calculator.factorial();
+      break;
+
+    case "floor":
+      calculator.floor();
+      break;
+
+    case "ceil":
+      calculator.ceil();
+      break;
+
+    case "round":
+      calculator.round();
+      break;
+
+    case "cube":
+      calculator.cube();
+      break;
+
+    case "sin":
+      calculator.sin();
+      break;
+
+    case "cos":
+      calculator.cos();
+      break;
+
+    case "tan":
+      calculator.tan();
+      break;
+
+    case "sec":
+      calculator.sec();
+      break;
+
+    case "csc":
+      calculator.csc();
+      break;
+
+    case "cot":
+      calculator.cot();
+      break;
 
     default:
       console.log("Actions Not Implemented Yet: ", action);
