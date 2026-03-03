@@ -5,7 +5,6 @@ class Calculator {
     this.internalExpression = "";
   }
   appendValue(displayValue, internalValue) {
-
     // prevent two operators in a row
     const operators = ["+", "-", "*", "/", "%", "**"];
     const lastChar = this.internalExpression.slice(-1);
@@ -46,45 +45,46 @@ class Calculator {
     this.internalExpression = this.internalExpression.slice(0, -1);
     this.updateDisplay(this.displayExpression || "0");
   }
-  toggleSign(){
-    try{
-        const value = eval(this.internalExpression);
 
-        if (!isFinite(value)) {
-            throw new Error("Invalid Calculation");
-        }
+  //helper Functions
+  evaluateExpression() {
+    const result = eval(this.internalExpression);
 
-        const result = -value;
-        this.displayExpression = result.toString();
-        this.internalExpression = result.toString();
-        this.updateDisplay(result);
-    }catch(error){
-        this.updateDisplay("Error");
-        this.displayExpression = "";
-        this.internalExpression = "";   
+    if (!isFinite(result)) {
+      throw new Error("Invalid Calculation");
+    }
+    return result;
+  }
+
+  setResult(result) {
+    this.displayExpression = result.toString();
+    this.internalExpression = result.toString();
+    this.updateDisplay(result);
+  }
+
+  handleError(){
+    this.displayExpression = "";
+    this.internalExpression = "";
+    this.updateDisplay = ("Error");
+  }
+
+  toggleSign() {
+    try {
+      const value = this.evaluateExpression();
+      const result = -value;
+      this.setResult(result);
+    } catch (error) {
+      this.handleError();
     }
   }
 
   calculate() {
     try {
-      const result = eval(this.internalExpression);
-
-      if (!isFinite(result)) {
-        throw new Error("Invalid Calculation");
-      }
-
-      this.displayExpression = result.toString();
-      this.internalExpression = result.toString();
-      this.updateDisplay(result);
+      const result = this.evaluateExpression();
+      this.setResult(result);
     } catch (error) {
-      this.updateDisplay("Error");
-      this.displayExpression = "";
-      this.internalExpression = "";
+      this.handleError();
     }
-  }
-
-  updateDisplay(value = this.displayExpression) {
-    this.display.value = value;
   }
 }
 
@@ -131,4 +131,4 @@ function handleAction(action) {
       console.log("Actions Not Implemented Yet: ", action);
   }
 }
-error
+error;
