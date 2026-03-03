@@ -123,6 +123,26 @@ function handleAction(action) {
       calculator.cot();
       break;
 
+    case "ms":
+      calculator.memoryStore();
+      break;
+
+    case "mr":
+      calculator.memoryRecall();
+      break;
+
+    case "mc":
+      calculator.memoryClear();
+      break;
+
+    case "mplus":
+      calculator.memoryAdd();
+      break;
+
+    case "mminus":
+      calculator.memorySubtract();
+      break;
+
     default:
       console.log("Actions Not Implemented Yet: ", action);
   }
