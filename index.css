@@ -40,6 +40,12 @@ body {
   display: none;
 }
 
-#degToggle{
+#degToggle {
   cursor: pointer;
+}
+
+#historyList {
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 0.9rem;
 }

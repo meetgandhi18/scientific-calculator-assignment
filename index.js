@@ -1,7 +1,11 @@
 import { Calculator } from "./calculator.js";
+import { createHistoryManager } from "./history.js";
 
 const display = document.querySelector(".display");
 const calculator = new Calculator(display);
+const historyManager = createHistoryManager();
+const historyList = document.getElementById("historyList");
+const clearHistoryBtn = document.getElementById("clearHistory");
 
 const buttons = document.querySelectorAll(".btn-calc");
 
@@ -33,6 +37,19 @@ degToggle.addEventListener("click", () => {
   }
 });
 
+function renderHistory() {
+  const history = historyManager.get();
+  historyList.innerHTML = history.map((item) => `<div>${item}</div>`).join("");
+}
+
+clearHistoryBtn.addEventListener("click",()=>{
+    historyManager.clear();
+    renderHistory();
+})
+
+renderHistory();
+
+
 function handleAction(action) {
   switch (action) {
     case "clear":
@@ -44,7 +61,11 @@ function handleAction(action) {
       break;
 
     case "calculate":
-      calculator.calculate();
+      const calcResult = calculator.calculate();
+      if (calcResult) {
+        historyManager.add(`${calcResult.expression} = ${calcResult.result}`);
+        renderHistory();
+      }
       break;
 
     case "toggleSign":

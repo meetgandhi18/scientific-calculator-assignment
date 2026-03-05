@@ -9,7 +9,7 @@ export class Calculator {
     this.memory = 0;
   }
   appendValue(displayValue, internalValue) {
-    
+
     // prevent two operators in a row
     const operators = ["+", "-", "*", "/", "%", "**"];
     const lastChar = this.internalExpression.slice(-1);
@@ -232,9 +232,12 @@ export class Calculator {
   calculate() {
     try {
       const result = this.evaluateExpression();
+      const expression = this.displayExpression;
       this.setResult(result);
+      return {expression,result};
     } catch (error) {
       this.handleError();
+      return null;
     }
   }
 
