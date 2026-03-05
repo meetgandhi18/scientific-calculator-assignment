@@ -72,6 +72,10 @@ document.addEventListener("keydown", (e) => {
     calculator.appendValue(key, key);
   }
 
+  if (key === "e" || key === "E"){
+    calculator.appendValue("2.718281828459045",Math.E)
+  }
+
   if (key === "Enter") {
     e.preventDefault();
     const calcResult = calculator.calculate();
