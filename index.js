@@ -42,13 +42,53 @@ function renderHistory() {
   historyList.innerHTML = history.map((item) => `<div>${item}</div>`).join("");
 }
 
-clearHistoryBtn.addEventListener("click",()=>{
-    historyManager.clear();
-    renderHistory();
-})
+clearHistoryBtn.addEventListener("click", () => {
+  historyManager.clear();
+  renderHistory();
+});
 
 renderHistory();
 
+document.addEventListener("keydown", (e) => {
+  const key = e.key;
+
+  if (!isNaN(key)) {
+    calculator.appendValue(key, key);
+  }
+
+  if (["+", "-", "*", "/", "%"].includes(key)) {
+    calculator.appendValue(key, key);
+  }
+
+  if (key === ".") {
+    calculator.appendValue(".", ".");
+  }
+
+  if (key === "^") {
+    calculator.appendValue("^", "**");
+  }
+
+  if (key === "(" || key === ")") {
+    calculator.appendValue(key, key);
+  }
+
+  if (key === "Enter") {
+    e.preventDefault();
+    const calcResult = calculator.calculate();
+    if (calcResult) {
+      historyManager.add(`${calcResult.expression} = ${calcResult.result}`);
+      renderHistory();
+    }
+  }
+
+  if (key === "Backspace") {
+    calculator.backspace();
+  }
+
+  if (key === "Escape") {
+    calculator.clear();
+  }
+});
 
 function handleAction(action) {
   switch (action) {
