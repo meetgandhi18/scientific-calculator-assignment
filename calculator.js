@@ -9,7 +9,6 @@ export class Calculator {
     this.memory = 0;
   }
   appendValue(displayValue, internalValue) {
-
     // prevent two operators in a row
     const operators = ["+", "-", "*", "/", "%", "**"];
     const lastChar = this.internalExpression.slice(-1);
@@ -192,40 +191,40 @@ export class Calculator {
     );
   }
 
-  memoryStore(){
-    try{
-        const value = this.evaluateExpression();
-        this.memory = value;
-    }catch{
-        this.handleError();
+  memoryStore() {
+    try {
+      const value = this.evaluateExpression();
+      this.memory = value;
+    } catch {
+      this.handleError();
     }
   }
 
-  memoryRecall(){
+  memoryRecall() {
     this.displayExpression = this.memory.toString();
     this.internalExpression = this.memory.toString();
     this.updateDisplay(this.memory);
   }
 
-  memoryClear(){
+  memoryClear() {
     this.memory = 0;
   }
 
-  memoryAdd(){
-    try{
-        const value = this.evaluateExpression();
-        this.memory += value;
-    }catch{
-        this.handleError();
+  memoryAdd() {
+    try {
+      const value = this.evaluateExpression();
+      this.memory += value;
+    } catch {
+      this.handleError();
     }
   }
 
-  memorySubtract(){
-    try{
-        const value = this.evaluateExpression();
-        this.memory -= value;
-    }catch{
-        this.handleError();
+  memorySubtract() {
+    try {
+      const value = this.evaluateExpression();
+      this.memory -= value;
+    } catch {
+      this.handleError();
     }
   }
 
@@ -234,7 +233,7 @@ export class Calculator {
       const result = this.evaluateExpression();
       const expression = this.displayExpression;
       this.setResult(result);
-      return {expression,result};
+      return { expression, result };
     } catch (error) {
       this.handleError();
       return null;

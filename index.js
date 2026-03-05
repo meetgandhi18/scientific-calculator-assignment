@@ -9,22 +9,21 @@ const clearHistoryBtn = document.getElementById("clearHistory");
 
 const buttons = document.querySelectorAll(".btn-calc");
 
-const themeToggle = document.getElementById('themeToggle');
+const themeToggle = document.getElementById("themeToggle");
 
-if(localStorage.getItem("theme") === "dark"){
-    document.body.classList.toggle("dark-mode");
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.toggle("dark-mode");
 }
 
-themeToggle.addEventListener("click",()=>{
-    document.body.classList.toggle("dark-mode");
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
 
-    const currentTheme = document.body.classList.contains("dark-mode")
+  const currentTheme = document.body.classList.contains("dark-mode")
     ? "dark"
     : "light";
 
-    localStorage.setItem("theme", currentTheme);
-})
-
+  localStorage.setItem("theme", currentTheme);
+});
 
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
@@ -89,8 +88,8 @@ document.addEventListener("keydown", (e) => {
     calculator.appendValue(key, key);
   }
 
-  if (key === "e" || key === "E"){
-    calculator.appendValue("2.718281828459045",Math.E)
+  if (key === "e" || key === "E") {
+    calculator.appendValue("2.718281828459045", Math.E);
   }
 
   if (key === "Enter") {
