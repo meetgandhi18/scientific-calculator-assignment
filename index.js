@@ -9,6 +9,23 @@ const clearHistoryBtn = document.getElementById("clearHistory");
 
 const buttons = document.querySelectorAll(".btn-calc");
 
+const themeToggle = document.getElementById('themeToggle');
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.toggle("dark-mode");
+}
+
+themeToggle.addEventListener("click",()=>{
+    document.body.classList.toggle("dark-mode");
+
+    const currentTheme = document.body.classList.contains("dark-mode")
+    ? "dark"
+    : "light";
+
+    localStorage.setItem("theme", currentTheme);
+})
+
+
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
     const displayValue = this.dataset.display || this.innerText;

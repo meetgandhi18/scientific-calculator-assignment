@@ -4,6 +4,7 @@ body {
 
 .calculator {
   max-width: 420px;
+  max-height: 935px;
   margin: 40px auto;
   background: #ffffff;
   border-radius: 15px;
@@ -46,6 +47,55 @@ body {
 
 #historyList {
   max-height: 150px;
-  overflow-y: auto;
+  overflow-y: scroll;
   font-size: 0.9rem;
+}
+
+.dark-mode {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark-mode .calculator {
+  background: #2c2c2c;
+}
+
+.dark-mode .history {
+  background: #2c2c2c;
+}
+
+.dark-mode .display {
+  background: #333;
+  color: white;
+}
+
+.dark-mode .btn-light {
+  background: #444;
+  color: white;
+  border: none;
+}
+
+.dark-mode .btn-warning {
+  background: #ff9500;
+  color: white;
+}
+
+.dark-mode .btn-primary {
+  background: #007bff;
+}
+
+.dark-mode .text-muted {
+  color: #bbb !important;
+}
+
+.dark-mode .memory-row button {
+  color: #fff !important;
+}
+
+.dark-mode .mode-row span {
+  color: #fff !important;
+}
+
+.dark-mode .btn-link {
+  color: #ddd !important;
 }
