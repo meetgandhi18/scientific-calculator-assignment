@@ -1,9 +1,29 @@
 import { Calculator } from "./calculator.js";
+import { createHistoryManager } from "./history.js";
 
 const display = document.querySelector(".display");
 const calculator = new Calculator(display);
+const historyManager = createHistoryManager();
+const historyList = document.getElementById("historyList");
+const clearHistoryBtn = document.getElementById("clearHistory");
 
 const buttons = document.querySelectorAll(".btn-calc");
+
+const themeToggle = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.toggle("dark-mode");
+}
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  const currentTheme = document.body.classList.contains("dark-mode")
+    ? "dark"
+    : "light";
+
+  localStorage.setItem("theme", currentTheme);
+});
 
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
@@ -33,6 +53,63 @@ degToggle.addEventListener("click", () => {
   }
 });
 
+function renderHistory() {
+  const history = historyManager.get();
+  historyList.innerHTML = history.map((item) => `<div>${item}</div>`).join("");
+}
+
+clearHistoryBtn.addEventListener("click", () => {
+  historyManager.clear();
+  renderHistory();
+});
+
+renderHistory();
+
+document.addEventListener("keydown", (e) => {
+  const key = e.key;
+
+  if (!isNaN(key)) {
+    calculator.appendValue(key, key);
+  }
+
+  if (["+", "-", "*", "/", "%"].includes(key)) {
+    calculator.appendValue(key, key);
+  }
+
+  if (key === ".") {
+    calculator.appendValue(".", ".");
+  }
+
+  if (key === "^") {
+    calculator.appendValue("^", "**");
+  }
+
+  if (key === "(" || key === ")") {
+    calculator.appendValue(key, key);
+  }
+
+  if (key === "e" || key === "E") {
+    calculator.appendValue("2.718281828459045", Math.E);
+  }
+
+  if (key === "Enter") {
+    e.preventDefault();
+    const calcResult = calculator.calculate();
+    if (calcResult) {
+      historyManager.add(`${calcResult.expression} = ${calcResult.result}`);
+      renderHistory();
+    }
+  }
+
+  if (key === "Backspace") {
+    calculator.backspace();
+  }
+
+  if (key === "Escape") {
+    calculator.clear();
+  }
+});
+
 function handleAction(action) {
   switch (action) {
     case "clear":
@@ -44,7 +121,11 @@ function handleAction(action) {
       break;
 
     case "calculate":
-      calculator.calculate();
+      const calcResult = calculator.calculate();
+      if (calcResult) {
+        historyManager.add(`${calcResult.expression} = ${calcResult.result}`);
+        renderHistory();
+      }
       break;
 
     case "toggleSign":
@@ -121,6 +202,26 @@ function handleAction(action) {
 
     case "cot":
       calculator.cot();
+      break;
+
+    case "ms":
+      calculator.memoryStore();
+      break;
+
+    case "mr":
+      calculator.memoryRecall();
+      break;
+
+    case "mc":
+      calculator.memoryClear();
+      break;
+
+    case "mplus":
+      calculator.memoryAdd();
+      break;
+
+    case "mminus":
+      calculator.memorySubtract();
       break;
 
     default:

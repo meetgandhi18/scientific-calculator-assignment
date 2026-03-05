@@ -6,6 +6,7 @@ export class Calculator {
     this.angleMode = "DEG"; //default
     this.displayExpression = "";
     this.internalExpression = "";
+    this.memory = 0;
   }
   appendValue(displayValue, internalValue) {
     // prevent two operators in a row
@@ -190,12 +191,52 @@ export class Calculator {
     );
   }
 
+  memoryStore() {
+    try {
+      const value = this.evaluateExpression();
+      this.memory = value;
+    } catch {
+      this.handleError();
+    }
+  }
+
+  memoryRecall() {
+    this.displayExpression = this.memory.toString();
+    this.internalExpression = this.memory.toString();
+    this.updateDisplay(this.memory);
+  }
+
+  memoryClear() {
+    this.memory = 0;
+  }
+
+  memoryAdd() {
+    try {
+      const value = this.evaluateExpression();
+      this.memory += value;
+    } catch {
+      this.handleError();
+    }
+  }
+
+  memorySubtract() {
+    try {
+      const value = this.evaluateExpression();
+      this.memory -= value;
+    } catch {
+      this.handleError();
+    }
+  }
+
   calculate() {
     try {
       const result = this.evaluateExpression();
+      const expression = this.displayExpression;
       this.setResult(result);
+      return { expression, result };
     } catch (error) {
       this.handleError();
+      return null;
     }
   }
 

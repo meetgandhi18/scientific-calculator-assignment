@@ -3,7 +3,6 @@ const trigSection = document.getElementById("trigSection");
 const functionSection = document.getElementById("functionSection");
 
 selector.addEventListener("change", function () {
-    
   trigSection.style.display = "none";
   functionSection.style.display = "none";
 
